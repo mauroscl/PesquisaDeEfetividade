@@ -1,0 +1,12 @@
+c:\users\maurol\documents\visual studio 2013\Projects\PesquisaDeEfetividade\PesquisaDeEfetividade\bin\Debug\PesquisaDeEfetividade.exe.config
+c:\users\maurol\documents\visual studio 2013\Projects\PesquisaDeEfetividade\PesquisaDeEfetividade\obj\Debug\PesquisaDeEfetividade.csprojResolveAssemblyReference.cache
+c:\users\maurol\documents\visual studio 2013\Projects\PesquisaDeEfetividade\PesquisaDeEfetividade\obj\Debug\PesquisaDeEfetividade.Form1.resources
+c:\users\maurol\documents\visual studio 2013\Projects\PesquisaDeEfetividade\PesquisaDeEfetividade\obj\Debug\PesquisaDeEfetividade.Properties.Resources.resources
+c:\users\maurol\documents\visual studio 2013\Projects\PesquisaDeEfetividade\PesquisaDeEfetividade\obj\Debug\PesquisaDeEfetividade.csproj.GenerateResource.Cache
+c:\users\maurol\documents\visual studio 2013\Projects\PesquisaDeEfetividade\PesquisaDeEfetividade\bin\Debug\PesquisaDeEfetividade.exe
+c:\users\maurol\documents\visual studio 2013\Projects\PesquisaDeEfetividade\PesquisaDeEfetividade\bin\Debug\PesquisaDeEfetividade.pdb
+c:\users\maurol\documents\visual studio 2013\Projects\PesquisaDeEfetividade\PesquisaDeEfetividade\obj\Debug\PesquisaDeEfetividade.exe
+c:\users\maurol\documents\visual studio 2013\Projects\PesquisaDeEfetividade\PesquisaDeEfetividade\obj\Debug\PesquisaDeEfetividade.pdb
+C:\Users\maurol\Source\Repos\PesquisaDeEfetividade\PesquisaDeEfetividade\bin\Debug\PesquisaDeEfetividade.exe.config
+C:\Users\maurol\Source\Repos\PesquisaDeEfetividade\PesquisaDeEfetividade\obj\Debug\PesquisaDeEfetividade.exe
+C:\Users\maurol\Source\Repos\PesquisaDeEfetividade\PesquisaDeEfetividade\obj\Debug\PesquisaDeEfetividade.pdb
