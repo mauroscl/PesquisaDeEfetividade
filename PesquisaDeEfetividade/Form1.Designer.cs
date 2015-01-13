@@ -348,6 +348,7 @@
             this.Salvar.TabIndex = 14;
             this.Salvar.Text = "Salvar e Adicionar";
             this.Salvar.UseVisualStyleBackColor = true;
+            this.Salvar.Click += new System.EventHandler(this.Salvar_Click);
             // 
             // label14
             // 
@@ -364,6 +365,8 @@
             this.Cnpj.Name = "Cnpj";
             this.Cnpj.Size = new System.Drawing.Size(221, 20);
             this.Cnpj.TabIndex = 0;
+            this.Cnpj.Enter += new System.EventHandler(this.Cnpj_Enter);
+            this.Cnpj.Validating += new System.ComponentModel.CancelEventHandler(this.Cnpj_Validating);
             // 
             // ResultadoDaBuscaDoCnpj
             // 
