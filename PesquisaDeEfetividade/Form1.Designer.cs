@@ -58,6 +58,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.Cnpj = new System.Windows.Forms.TextBox();
             this.ResultadoDaBuscaDoCnpj = new System.Windows.Forms.Label();
+            this.QuantidadeDeRegistrosAdicionados = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.ReiniciarContador = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -342,7 +345,7 @@
             // 
             // Salvar
             // 
-            this.Salvar.Location = new System.Drawing.Point(346, 423);
+            this.Salvar.Location = new System.Drawing.Point(344, 414);
             this.Salvar.Name = "Salvar";
             this.Salvar.Size = new System.Drawing.Size(160, 39);
             this.Salvar.TabIndex = 14;
@@ -377,11 +380,46 @@
             this.ResultadoDaBuscaDoCnpj.TabIndex = 29;
             this.ResultadoDaBuscaDoCnpj.Text = "label15";
             // 
+            // QuantidadeDeRegistrosAdicionados
+            // 
+            this.QuantidadeDeRegistrosAdicionados.AutoSize = true;
+            this.QuantidadeDeRegistrosAdicionados.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuantidadeDeRegistrosAdicionados.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.QuantidadeDeRegistrosAdicionados.Location = new System.Drawing.Point(377, 483);
+            this.QuantidadeDeRegistrosAdicionados.Name = "QuantidadeDeRegistrosAdicionados";
+            this.QuantidadeDeRegistrosAdicionados.Size = new System.Drawing.Size(14, 13);
+            this.QuantidadeDeRegistrosAdicionados.TabIndex = 30;
+            this.QuantidadeDeRegistrosAdicionados.Text = "0";
+            this.QuantidadeDeRegistrosAdicionados.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(395, 483);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(90, 13);
+            this.label15.TabIndex = 31;
+            this.label15.Text = "registros inseridos";
+            // 
+            // ReiniciarContador
+            // 
+            this.ReiniciarContador.Location = new System.Drawing.Point(509, 470);
+            this.ReiniciarContador.Name = "ReiniciarContador";
+            this.ReiniciarContador.Size = new System.Drawing.Size(106, 38);
+            this.ReiniciarContador.TabIndex = 32;
+            this.ReiniciarContador.TabStop = false;
+            this.ReiniciarContador.Text = "Reiniciar contador";
+            this.ReiniciarContador.UseVisualStyleBackColor = true;
+            this.ReiniciarContador.Click += new System.EventHandler(this.ReiniciarContador_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(865, 481);
+            this.ClientSize = new System.Drawing.Size(865, 520);
+            this.Controls.Add(this.ReiniciarContador);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.QuantidadeDeRegistrosAdicionados);
             this.Controls.Add(this.ResultadoDaBuscaDoCnpj);
             this.Controls.Add(this.Cnpj);
             this.Controls.Add(this.label14);
@@ -413,7 +451,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Pesquisa de Efetividade";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -452,6 +490,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox Cnpj;
         private System.Windows.Forms.Label ResultadoDaBuscaDoCnpj;
+        private System.Windows.Forms.Label QuantidadeDeRegistrosAdicionados;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button ReiniciarContador;
     }
 }
 

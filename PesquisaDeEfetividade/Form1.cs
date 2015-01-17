@@ -16,7 +16,8 @@ namespace PesquisaDeEfetividade
     {
         private readonly IList<ComboBox> _combosDeRespostas ;
         private readonly string _connectionString;
-        private int? IdDoAtendimento;
+        private int? _idDoAtendimento;
+        private int _quantidadeDeRegistrosInseridos;
 
         private void InicializarCombos()
         {
@@ -85,7 +86,7 @@ namespace PesquisaDeEfetividade
 
         private void Salvar_Click(object sender, EventArgs e)
         {
-            if (!this.IdDoAtendimento.HasValue)
+            if (!this._idDoAtendimento.HasValue)
             {
                 MessageBox.Show("Atendimento não encontrado");
                 return;
@@ -102,14 +103,16 @@ namespace PesquisaDeEfetividade
                 .OrderBy(combo => Convert.ToInt32(combo.Tag))
                 .Select(combo => ((RespostaPossivel) combo.SelectedItem).IdResposta);
 
-            geradorDeArquivo.Gerar(this.IdDoAtendimento.Value,respostas);
+            geradorDeArquivo.Gerar(this._idDoAtendimento.Value,respostas);
+
+            QuantidadeDeRegistrosAdicionados.Text = Convert.ToString(++_quantidadeDeRegistrosInseridos);
 
             ReiniciarRespostas();
 
             this.Cnpj.Text = "";
             this.ResultadoDaBuscaDoCnpj.Text = "";
 
-            this.IdDoAtendimento = null;
+            this._idDoAtendimento = null;
 
             SendKeys.Send("{TAB}{TAB}{TAB}");
         }
@@ -121,17 +124,17 @@ namespace PesquisaDeEfetividade
             {
                 ResultadoDaBuscaDoCnpj.ForeColor = Color.Red;
                 ResultadoDaBuscaDoCnpj.Text = "CNPJ inválido";
-                this.IdDoAtendimento = null;
+                this._idDoAtendimento = null;
                 return;
             }
 
             var consultaDeAtendimento = new ConsultaDeAtendimento(_connectionString);
 
-            this.IdDoAtendimento = consultaDeAtendimento.PorCnpj(cnpj);
+            this._idDoAtendimento = consultaDeAtendimento.PorCnpj(cnpj);
 
-            if (this.IdDoAtendimento.HasValue)
+            if (this._idDoAtendimento.HasValue)
             {
-                ResultadoDaBuscaDoCnpj.Text = string.Format("Atendimento: {0}", this.IdDoAtendimento);
+                ResultadoDaBuscaDoCnpj.Text = string.Format("Atendimento: {0}", this._idDoAtendimento);
                 ResultadoDaBuscaDoCnpj.ForeColor = Color.ForestGreen;
             }
             else
@@ -145,6 +148,12 @@ namespace PesquisaDeEfetividade
         private void Cnpj_Enter(object sender, EventArgs e)
         {
             ResultadoDaBuscaDoCnpj.Text = "";
+        }
+
+        private void ReiniciarContador_Click(object sender, EventArgs e)
+        {
+            this._quantidadeDeRegistrosInseridos = 0;
+            this.QuantidadeDeRegistrosAdicionados.Text = "0";
         }
     }
 }
