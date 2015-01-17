@@ -134,8 +134,20 @@ namespace PesquisaDeEfetividade
 
             if (this._idDoAtendimento.HasValue)
             {
-                ResultadoDaBuscaDoCnpj.Text = string.Format("Atendimento: {0}", this._idDoAtendimento);
-                ResultadoDaBuscaDoCnpj.ForeColor = Color.ForestGreen;
+                int quantidadeDeRespostas = consultaDeAtendimento.ContarRespostas(this._idDoAtendimento.Value);
+
+                if (quantidadeDeRespostas == 0)
+                {
+                    ResultadoDaBuscaDoCnpj.Text = string.Format("Atendimento {0}", this._idDoAtendimento);
+                    ResultadoDaBuscaDoCnpj.ForeColor = Color.ForestGreen;
+                }
+                else
+                {
+                    ResultadoDaBuscaDoCnpj.Text = string.Format("Atendimento {0} já possui respostas",
+                        this._idDoAtendimento);
+                    ResultadoDaBuscaDoCnpj.ForeColor = Color.DarkOrange;
+
+                }
             }
             else
             {

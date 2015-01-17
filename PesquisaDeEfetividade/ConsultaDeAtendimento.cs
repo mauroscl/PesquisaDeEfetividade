@@ -46,6 +46,27 @@ namespace PesquisaDeEfetividade
                 return idAtendimento;
             }
         }
+
+        public int ContarRespostas(int idDoAtendimento)
+        {
+            using (var conexao = new SqlConnection(_stringDeConexao))
+            {
+                conexao.Open();
+
+                SqlCommand sqlCommand = conexao.CreateCommand();
+
+                sqlCommand.CommandText = "select dbo.NaN_ContarRespostasRealizadasNaPesquisaDeEfetividade(@idAtendimento)";
+                sqlCommand.Parameters.AddWithValue("@idAtendimento", idDoAtendimento);
+
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+                sqlDataReader.Read();
+
+                int quantidade = sqlDataReader.GetInt32(0);
+
+                return quantidade;
+            }
+        }
     }
 
 }
