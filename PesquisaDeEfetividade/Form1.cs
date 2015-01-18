@@ -39,17 +39,24 @@ namespace PesquisaDeEfetividade
         private void CarregarOpcoesDosCombos()
         {
             var consultaDeResposta = new ConsultaDeResposta(_connectionString);
-            IList<RespostaPossivel> respostasPossiveis = consultaDeResposta.ListarTodas();
-
-            foreach (var comboBox in _combosDeRespostas)
+            try
             {
-                ComboBox box = comboBox;
-                IEnumerable<RespostaPossivel> respostasDaPergunta = respostasPossiveis.Where(rp => rp.IdPergunta == Convert.ToInt32(box.Tag));
+                IList<RespostaPossivel> respostasPossiveis = consultaDeResposta.ListarTodas();
 
-                foreach (var resposta in respostasDaPergunta)
+                foreach (var comboBox in _combosDeRespostas)
                 {
-                    box.Items.Add(resposta);
+                    ComboBox box = comboBox;
+                    IEnumerable<RespostaPossivel> respostasDaPergunta = respostasPossiveis.Where(rp => rp.IdPergunta == Convert.ToInt32(box.Tag));
+
+                    foreach (var resposta in respostasDaPergunta)
+                    {
+                        box.Items.Add(resposta);
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -79,8 +86,6 @@ namespace PesquisaDeEfetividade
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            CarregarOpcoesDosCombos();
-            InicializarCombos();
             ResultadoDaBuscaDoCnpj.Text = "";
         }
 
@@ -130,31 +135,37 @@ namespace PesquisaDeEfetividade
 
             var consultaDeAtendimento = new ConsultaDeAtendimento(_connectionString);
 
-            this._idDoAtendimento = consultaDeAtendimento.PorCnpj(cnpj);
-
-            if (this._idDoAtendimento.HasValue)
+            try
             {
-                int quantidadeDeRespostas = consultaDeAtendimento.ContarRespostas(this._idDoAtendimento.Value);
+                this._idDoAtendimento = consultaDeAtendimento.PorCnpj(cnpj);
 
-                if (quantidadeDeRespostas == 0)
+                if (this._idDoAtendimento.HasValue)
                 {
-                    ResultadoDaBuscaDoCnpj.Text = string.Format("Atendimento {0}", this._idDoAtendimento);
-                    ResultadoDaBuscaDoCnpj.ForeColor = Color.ForestGreen;
+                    int quantidadeDeRespostas = consultaDeAtendimento.ContarRespostas(this._idDoAtendimento.Value);
+
+                    if (quantidadeDeRespostas == 0)
+                    {
+                        ResultadoDaBuscaDoCnpj.Text = string.Format("Atendimento {0}", this._idDoAtendimento);
+                        ResultadoDaBuscaDoCnpj.ForeColor = Color.ForestGreen;
+                    }
+                    else
+                    {
+                        ResultadoDaBuscaDoCnpj.Text = string.Format("Atendimento {0} já possui respostas",
+                            this._idDoAtendimento);
+                        ResultadoDaBuscaDoCnpj.ForeColor = Color.DarkOrange;
+
+                    }
                 }
                 else
                 {
-                    ResultadoDaBuscaDoCnpj.Text = string.Format("Atendimento {0} já possui respostas",
-                        this._idDoAtendimento);
-                    ResultadoDaBuscaDoCnpj.ForeColor = Color.DarkOrange;
-
+                    ResultadoDaBuscaDoCnpj.Text = "Atendimento não encontrado";
+                    ResultadoDaBuscaDoCnpj.ForeColor = Color.Red;
                 }
             }
-            else
+            catch (Exception exception)
             {
-                ResultadoDaBuscaDoCnpj.Text = "Atendimento não encontrado";
-                ResultadoDaBuscaDoCnpj.ForeColor = Color.Red;
+                MessageBox.Show(exception.Message);
             }
-
         }
 
         private void Cnpj_Enter(object sender, EventArgs e)
@@ -166,6 +177,13 @@ namespace PesquisaDeEfetividade
         {
             this._quantidadeDeRegistrosInseridos = 0;
             this.QuantidadeDeRegistrosAdicionados.Text = "0";
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            CarregarOpcoesDosCombos();
+            InicializarCombos();
+
         }
     }
 }
